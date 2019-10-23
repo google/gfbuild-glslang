@@ -18,20 +18,20 @@ on:
     branches:
       - 'master'
       - 'test*'
-#    paths:
-#      - 'COMMIT_ID'
+    paths:
+      - 'COMMIT_ID'
 
 jobs:
   build:
     strategy:
       matrix:
         os:
-#          - ubuntu-16.04
+          - ubuntu-16.04
           - windows-2016
-#          - macOS-10.14
+          - macOS-10.14
         config:
           - Debug
-#          - Release
+          - Release
     runs-on: ${{ matrix.os }}
     env:
       CONFIG: ${{ matrix.config }}

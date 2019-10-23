@@ -122,7 +122,22 @@ popd
 rm -rf "${INSTALL_DIR:?}/lib"
 rm -rf "${INSTALL_DIR:?}/include"
 
-"${PYTHON}" "${WORK}/add_pdbs.py" "${BUILD_DIR}" "${INSTALL_DIR}"
+case "$(uname)" in
+"Linux")
+  ;;
+
+"Darwin")
+  ;;
+
+"MINGW"*)
+  "${PYTHON}" "${WORK}/add_pdbs.py" "${BUILD_DIR}" "${INSTALL_DIR}"
+  ;;
+
+*)
+  echo "Unknown OS"
+  exit 1
+  ;;
+esac
 
 for f in "${INSTALL_DIR}/bin/"*; do
   echo "${BUILD_REPO_SHA}">"${f}.build-version"
