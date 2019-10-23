@@ -40,7 +40,7 @@ def main():
     binaries.extend(install_dir.rglob("*.dll"))
 
     # E.g. hello -> bin/hello.exe
-    binaries_map = {b.with_suffix(""): b for b in binaries}  # type: Dict[str, Path]
+    binaries_map = {b.with_suffix("").name: b for b in binaries}  # type: Dict[str, Path]
 
     assert len(binaries) == len(binaries_map), "Duplicate binaries: " + str(binaries_map)
 
