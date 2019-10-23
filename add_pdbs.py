@@ -44,11 +44,14 @@ def main():
 
     assert len(binaries) == len(binaries_map), "Duplicate binaries: " + str(binaries_map)
 
-    pdbs = list(build_dir.rglob("*.pdb"))
+    pdbs = [p for p in build_dir.rglob("*.pdb") if p.with_suffix("").name in binaries_map]
 
     pdbs_set = {p.with_suffix("").name for p in pdbs}
 
-    assert len(pdbs) == len(pdbs_set), "Duplicate pdbs: " + str(pdbs_set)
+    if len(pdbs) != len(pdbs_set):
+        log("Duplicate pdbs:")
+        log(pdbs)
+        sys.exit(1)
 
     for pdb in pdbs:
         name = pdb.with_suffix("").name
