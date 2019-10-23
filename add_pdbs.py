@@ -42,13 +42,13 @@ def main():
     # E.g. hello -> bin/hello.exe
     binaries_map = {b.with_suffix(""): b for b in binaries}  # type: Dict[str, Path]
 
-    assert len(binaries) == len(binaries_map), "Duplicate binaries"
+    assert len(binaries) == len(binaries_map), "Duplicate binaries: " + str(binaries_map)
 
     pdbs = list(build_dir.rglob("*.pdb"))
 
     pdbs_set = {p.with_suffix("").name for p in pdbs}
 
-    assert len(pdbs) == len(pdbs_set), "Duplicate pdbs"
+    assert len(pdbs) == len(pdbs_set), "Duplicate pdbs: " + str(pdbs_set)
 
     for pdb in pdbs:
         name = pdb.with_suffix("").name
