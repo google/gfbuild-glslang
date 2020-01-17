@@ -43,7 +43,7 @@ case "$(uname)" in
   brew install md5sha1sum
   ;;
 
-"MINGW"*)
+"MINGW"*|"MSYS_NT"*)
   GH_RELEASE_TOOL_ARCH="windows_amd64"
   NINJA_OS="win"
   BUILD_PLATFORM="Windows_x64"
