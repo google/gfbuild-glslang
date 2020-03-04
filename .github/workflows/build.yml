@@ -32,6 +32,7 @@ jobs:
         config:
           - Debug
           - Release
+      fail-fast: false # TODO remove.
     runs-on: ${{ matrix.os }}
     env:
       CONFIG: ${{ matrix.config }}
