@@ -165,15 +165,6 @@ sha1sum "${POM_FILE}" >"${POM_FILE}.sha1"
 
 DESCRIPTION="$(echo -e "Automated build for ${TARGET_REPO_NAME} version ${COMMIT_ID}.\n$(git log --graph -n 3 --abbrev-commit --pretty='format:%h - %s <%an>')")"
 
-# TODO: Remove: test without setting GITHUB_TOKEN.
-"${PYTHON}" -m github_release_retry.github_release_retry \
-  --user "${BUILD_REPO_ORG}" \
-  --repo "${BUILD_REPO_NAME}" \
-  --tag_name "${TAG}" \
-  --target_commitish "${BUILD_REPO_SHA}" \
-  --body_string "${DESCRIPTION}" \
-  "${INSTALL_DIR}.zip"
-
 # Only release from master branch commits.
 # shellcheck disable=SC2153
 if test "${GITHUB_REF}" != "refs/heads/master"; then
