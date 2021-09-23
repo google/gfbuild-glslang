@@ -172,7 +172,7 @@ if test "${GITHUB_REF}" != "refs/heads/master"; then
 fi
 
 # We do not use the GITHUB_TOKEN provided by GitHub Actions.
-# We cannot set enviroment variables or secrets that start with GITHUB_ in .yml files,
+# We cannot set environment variables or secrets that start with GITHUB_ in .yml files,
 # but the github-release-retry tool requires GITHUB_TOKEN, so we set it here.
 export GITHUB_TOKEN="${GH_TOKEN}"
 
